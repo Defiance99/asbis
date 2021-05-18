@@ -1,0 +1,17 @@
+.catalog__title {
+    line-height: 59.67px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 1394px) {
+    .catalog__wrapper {
+        max-width: 910px;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 940px) {
+    .catalog__wrapper {
+        max-width: unset;
+        justify-content: center;
+    }
+}

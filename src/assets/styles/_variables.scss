@@ -1,0 +1,15 @@
+:root {
+    --container-width: 1400px;
+    --content-width: 1160px;
+    --single-product__text-size: 24px;
+    --title-font: 'SF UI Display';
+    --text-font: 'SF UI Display';
+    --button-font: 'SF UI Display';
+    --basic-margin: 75px;
+    --primary-color: #FE9071;
+}
+
+@mixin activated-filter {
+    color: #FFF;
+    background-color: var(--primary-color);
+}
