@@ -1,5 +1,4 @@
 import '../styles/style.scss'
-import './slider'
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 
@@ -30,36 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    let filteR = new Map();
-
     let filters = document.querySelectorAll('.filters__button');
-    let slidesFemale = document.querySelectorAll('.swiper-container .swiper-slide[filter="female"]');
-    let slidesMale = document.querySelectorAll('.swiper-container .swiper-slide[filter="male"]');
+    let slidesFemale = document.querySelectorAll('.swiper-container .swiper-slide[data-filter="female"]');
+    let slidesMale = document.querySelectorAll('.swiper-container .swiper-slide[data-filter="male"]');
 
     let filterButtonByMale = document.querySelector('.filters__button[value="male"]');
     let filterButtonByFemale = document.querySelector('.filters__button[value="female"]');
     let filterButtonAll = document.querySelector('.filters__button[value="all"]');
 
-    filterButtonByMale.addEventListener('click', () => {
-        deactivateButtons();
-        activateButton(filterButtonByMale);
-        swiper.removeAllSlides();
-        swiper.appendSlide(slidesMale);
-    });
-
-    filterButtonByFemale.addEventListener('click', () => {
-        deactivateButtons();
-        activateButton(filterButtonByFemale);
-        swiper.removeAllSlides();
-        swiper.appendSlide(slidesFemale);
-    });
-
-    filterButtonAll.addEventListener('click', () => {
-        deactivateButtons();
-        activateButton(filterButtonAll);
-        swiper.removeAllSlides();
-        swiper.appendSlide(Array.from(slidesFemale).concat(Array.from(slidesMale)));
-    });
+    filterButtonByMale.addEventListener('click', () => initFilters(slidesMale, filterButtonByMale));
+    filterButtonByFemale.addEventListener('click', () => initFilters(slidesFemale, filterButtonByFemale));
+    filterButtonAll.addEventListener('click', () => initFilters(Array.from(slidesFemale).concat(Array.from(slidesMale)), filterButtonAll));
 
     let event = new Event('click');
     filterButtonByMale.dispatchEvent(event);
@@ -68,13 +48,20 @@ document.addEventListener('DOMContentLoaded', () => {
     swiper.on('activeIndexChange', (swiper) => {
         if (filters[0].classList.contains('filters__button_active') && window.innerWidth >= 950 && window.innerWidth < 1400) {
             if (swiper.slides.length > 1 && 
-                swiper.slides[swiper.activeIndex].getAttribute('filter') != 
-                swiper.slides[swiper.activeIndex + 1].getAttribute('filter')) showCurrentFilter();
+                swiper.slides[swiper.activeIndex].getAttribute('data-filter') != 
+                swiper.slides[swiper.activeIndex + 1].getAttribute('data-filter')) showCurrentFilter();
             else hiddenCurrentFilter();
         }else {
             hiddenCurrentFilter();
         }
     })
+
+    function initFilters(slides, button) {
+        deactivateButtons();
+        activateButton(button);
+        swiper.removeAllSlides();
+        swiper.appendSlide(slides);
+    }
 
     function deactivateButtons() {
         for (let i = 0; i < filters.length; i++) {
