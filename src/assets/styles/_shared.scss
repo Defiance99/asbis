@@ -131,6 +131,12 @@ h6.title {
     box-shadow: 0 0 5px 2px #a09b9b;
 }
 
+.swiper-container {
+    .item__wrapper {
+        margin: 14px 8px;
+    }
+}
+
 .swiper-butt-prev, .swiper-butt-next {
     position: absolute;
     bottom: 5px;

@@ -2,6 +2,11 @@
     margin-top: 218px;
 }
 
+.catalog__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .catalog__title {
     margin-bottom: 37px;
     line-height: 59.67px;

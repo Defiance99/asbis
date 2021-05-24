@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         slidesPerGroup: 3,
         /* autoHeight: true, */
         resizeObserver: true,
-        spaceBetween: 5,
+        spaceBetween: 7,
         navigation: {
             nextEl: ".swiper-butt-next",
             prevEl: ".swiper-butt-prev",
